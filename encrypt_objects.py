@@ -15,7 +15,8 @@ def encrypt_object(frame, coordinates, key):
     y1, y2 = max(0, y1), min(height, y2 + 1)
 
     # Encrypt using vectorized operations
-    frame[y1:y2, x1:x2] ^= np.array(key, dtype=np.uint8)
+    print("Object Box Coords %d %d %d %d", x1, x2, y1, y2)
+    frame[y1:y2, x1:x2] ^= np.array(key, dtype=np.uint8);
 
 def encrypt_video(input_path, output_path, json_path, selected_ids, key=(128, 64, 32)):
     """
@@ -51,6 +52,7 @@ def encrypt_video(input_path, output_path, json_path, selected_ids, key=(128, 64
             [(obj["bounding_box"]["x1"], obj["bounding_box"]["y1"]),
              (obj["bounding_box"]["x2"], obj["bounding_box"]["y2"])]
             for obj in frame_objects if obj["track_id"] in selected_ids
+            
         ]
 
         # Encrypt objects
@@ -70,7 +72,7 @@ def encrypt_video(input_path, output_path, json_path, selected_ids, key=(128, 64
 
 
 # User specifies the track IDs they want encrypted
-selected_ids = [1, 2, 3, 5, 77]
+selected_ids = [1]
 
 # Paths to video and JSON
 input_video_path = "resources/media/sample_video.mp4"

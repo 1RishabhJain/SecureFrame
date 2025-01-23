@@ -42,9 +42,12 @@ tracked_data = {}
 frame_skip = 1
 
 for frame_index in range(0, frame_count, frame_skip):
+    print(frame_index)
     ret, frame = cap.read()
     if not ret:
         break
+
+    print(frame_index)
 
     # Process frame
     results = model.track(frame, persist=True, conf=0.5)
@@ -55,6 +58,7 @@ for frame_index in range(0, frame_count, frame_skip):
     # Extract object data from YOLO results
     frame_objects = []
     if len(results[0].boxes) > 0:  # Ensure there are detections
+        print(frame_index)
         for box in results[0].boxes:
             if box.id is None:  # Skip untracked objects
                 continue
