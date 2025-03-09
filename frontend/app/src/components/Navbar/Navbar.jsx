@@ -1,29 +1,31 @@
 import { useState } from 'react'
 import './Navbar.css';
 import { Link } from 'react-router-dom'
-
-
+import logo from '../../assets/minilogo.svg';
 
 function Navbar() {
-
   return (
-    <>
     <div className='navbar'>
-      <img src="/temp_logo.png" className="logo"></img>
-      <div className="navbar-options">
-        <div className="menu">
-          <Link to="/upload" className="nav-link"> Encryptor </Link>
-          <Link to="/decrypt" className="nav-link"> Decryptor </Link>
-          <Link to="/contactUs" className="nav-link"> Contact Us</Link>
-        </div>
-        <div className="button-cont">
-          <button>Log in</button>
-          <button className="sign-up">Sign up</button>
-        </div>
+      <div className="navbar-section logo-section">
+        <Link to="/" className="logo-container">
+          <img src={logo} alt="AES-256 Object Vault" className="main-logo" />
+        </Link>
+      </div>
+      
+      <div className="navbar-section nav-section">
+        <Link to="/upload" className="nav-link">Encryptor</Link>
+        <Link to="/decrypt" className="nav-link">Decryptor</Link>
+        <Link to="/demo" className="nav-link">Live Demo</Link>
+      </div>
+      
+      <div className="navbar-section button-section">
+        <button className="login-btn">Log in</button>
+        <button className="signup-btn">
+          <span>Sign up</span>
+          <div className="animated-border"></div>
+        </button>
       </div>
     </div>
-    
-    </>
   )
 }
 
