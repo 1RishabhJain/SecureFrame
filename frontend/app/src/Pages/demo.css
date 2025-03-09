@@ -159,7 +159,7 @@ video, canvas {
   font-weight: bold;
   background-color: rgba(104, 73, 213, 0.41); /* #6849D5 at 41% opacity */
   padding: 0 2rem;
-  height: 60px;
+  height: 70px;
   border-radius: 50px;
   text-align: center;
   margin-bottom: 0;
@@ -179,8 +179,8 @@ video, canvas {
 }
 
 .object-button {
-  width: 70px;
-  height: 60px;
+  width: 75px;
+  height: 70px;
   border-radius: 50%;
   background-color: rgba(104, 73, 213, 0.41);
   border: none;
