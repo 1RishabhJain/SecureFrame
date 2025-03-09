@@ -19,7 +19,7 @@ function Navbar() {
       </div>
       
       <div className="navbar-section button-section">
-        <button className="login-btn">Log in</button>
+        <Link to="/progress" className="login-btn">Log in</Link>
         <button className="signup-btn">
           <span>Sign up</span>
           <div className="animated-border"></div>
