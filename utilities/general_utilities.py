@@ -61,3 +61,13 @@ def validate_coordinates(frame, bounding_box):
         raise ValueError(f"Invalid bounding box dimensions (x1 >= x2 or y1 >= y2): {bounding_box}")
 
     return (x1, y1, x2, y2)
+
+def get_unique_track_ids(tracked_data):
+    unique_track_ids = set()
+    
+    for key, entries in tracked_data.items():
+        for entry in entries:
+            if "track_id" in entry:
+                unique_track_ids.add(entry["track_id"])
+    
+    return list(unique_track_ids)
