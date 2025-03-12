@@ -11,6 +11,10 @@ import { Progress } from './Pages/progress.jsx'
 import Background from './components/background/background'
 import Demo from './Pages/demo'
 
+import ObjectSelection from "./Pages/objectselection.jsx";
+import VideoOutput from './Pages/videooutput.jsx'
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,7 +29,9 @@ function App() {
             <Route path="/decrypt" element={<Decrypt />} />
             <Route path="/encrypt" element={<Encrypt />} />
             <Route path="/progress" element={<Progress />} />
-            <Route path="/demo" element={<Demo />} />
+            <Route path="/demo" element={<Demo />} /> 
+            <Route path="/objectselection" element={<ObjectSelection />} />
+            <Route path="/videooutput" element={<VideoOutput/>} />
           </Routes>
         </div>
       </div>
