@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
-import Select from "react-select";
-import axios from "axios"; // Import axios for API calls
-import "./objectselection.css";
-import { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom"; // Import for navigation
-
+import "./videooutput.css";
 
 const VideoOutput = () => {
+    const [videoUrl, setVideoUrl] = useState(null); // Define video URL
+
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-        <h1 className="text-2xl font-bold mb-4">Video Output</h1>
-        <video controls className="w-3/4 max-w-2xl rounded-lg shadow-lg">
-          <source src="" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div className="video-output-container">
+        <h1>Video Output</h1>
+        <div className="video-container">
+            <ReactPlayer 
+                url={videoUrl||"youtu.be/8DlU58Yi3Ww?si=aW31QL_ZAb4zRYoF"}
+                controls 
+                width="100%"
+                height="550px"
+            />
+        </div>
       </div>
     );
-  };
-  
-  export default VideoOutput;
+};
+
+export default VideoOutput;
+
   

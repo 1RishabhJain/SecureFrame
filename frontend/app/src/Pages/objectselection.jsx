@@ -10,6 +10,7 @@ import { Navigate, useNavigate } from "react-router-dom"; // Import for navigati
 
 
 const ObjectSelection = () => {
+  const options = []; 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [videoUrl, setVideoUrl] = useState(null);
 
@@ -23,22 +24,36 @@ const ObjectSelection = () => {
     } catch (error) {
         console.error("Error fetching video:", error);
     }
-};
+  };
 
-//GET AVAIALBE ID'S API CALL
+  const getAvailableIds = async () => {
+    try {
+        const response = await axios.get("http://127.0.0.1:5000/ids/encrypt", )
+        for (let r=0; r<response.data.length-1; r++){
+          options.push({value:response.data[r], label:`ID ${response.data[r]} `})
+        }
 
-useEffect(() => {
+    }
+    catch (error) {
+    console.error("Error fetching available IDs:", error);
+    }
+  };
+
+  //GET AVAIALBE ID'S API CALL
+
+  useEffect(() => {
     getDetectedVideo();
+    getAvailableIds();
     //put the available id's api call in here as well
   }, []);
+  
 
 
 
 
-
-  const options = [
+  /*const options = [
     { value: "1", label: "ID 1" },
-    { value: "2", label: "Id 2" },
+    { value: "2", label: "ID 2" },
     { value: "3", label: "ID 3" },
     { value: "4", label: "ID 4" },
     { value: "5", label: "ID 5" },
@@ -54,6 +69,7 @@ useEffect(() => {
     { value: "15", label: "ID 15" },
     { value: "16", label: "ID 16" },
   ];
+  */
 
   const handleSubmit = async () => {
 
