@@ -7,7 +7,7 @@ import os
 
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app)
+CORS(app,resources={"/*": {"origins": "http://localhost:5173"}})
 
 model_path = 'models/yolov8n.pt'
 tracked_data_path = "output/tracked_objects.json"

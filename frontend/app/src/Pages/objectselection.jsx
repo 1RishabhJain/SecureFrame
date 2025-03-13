@@ -7,8 +7,6 @@ import { useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom"; // Import for navigation
 
 
-
-
 const ObjectSelection = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [videoUrl, setVideoUrl] = useState(null);

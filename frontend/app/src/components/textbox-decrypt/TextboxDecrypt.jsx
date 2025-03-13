@@ -1,32 +1,38 @@
 import "./TextboxDecrypt.css"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function TextboxDecrypt() {
-    const [val, setVal] = useState("");
-    const clickLPR = () => {
-        alert([val,"LPR Video"])
-    }
+    const [key, setKey] = useState("");  // Separate state for key
+    const [nonce, setNonce] = useState("");  // Separate state for nonce
+    const navigate = useNavigate(); // Hook for navigation
+    
 
-    const clickCCTV = () => {
-        alert([val,"CCTV"])
-    }
-
-    const change = event => { 
-        setVal(event.target.value)
+    const clickNext = () => {
+        alert(["key: ", key," nonce: ",nonce])
+        navigate("/decrypt");
     }
 
     return (
-        <div className="text-wrapper">
-            <input 
-            className="text"
-            onChange= {change}
-            value={val}
-            placeholder="Enter Decryption Key(s)"
-            />
-            <div className="all-buttons">
-                <button className="lpr-btn" onClick={clickLPR}>Key: XXXX</button>
-                <button className="cctv-btn" onClick={clickCCTV}>Key: XXXXXX</button>
+        <div className="all-wrapper">
+            <div className="text-wrapperD">
+                <input 
+                    className="text"
+                    onChange={(event) => setKey(event.target.value)}
+                    value={key}
+                    placeholder="Enter Decryption Key(s)"
+                />
             </div>
+            <div className="text-wrapperD">   
+                <input 
+                    className="text"
+                    onChange={(event) => setNonce(event.target.value)}
+                    value={nonce}
+                    placeholder="Enter Decryption Nonce(s)"
+                />
+            </div>
+            <button className="btn" onClick={clickNext}>NEXT</button>
         </div>
     )
 }

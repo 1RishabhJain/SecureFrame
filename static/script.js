@@ -8,6 +8,7 @@ function startDetection() {
     
     let formData = new FormData();
     formData.append("video", file);
+    console.log(file);
 
     document.getElementById("status").innerText = "Detection in progress...";
 
