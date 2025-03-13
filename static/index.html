@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Encryption</title>
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <h1>Detection</h1>
+    <label for="videoFile">Select Video File:</label>
+    <input type="file" id="videoFile" accept="video/*">
+    <button onclick="startDetection()">Start Detection</button>
+
+    <h1>Video Encryption</h1>
+    <label for="encryptVideoFile">Select Video File:</label>
+    <input type="file" id="encryptVideoFile" accept="video/*">
+    
+    <label for="objectIds">Enter Object IDs (comma separated):</label>
+    <input type="text" id="objectIds" placeholder="1,2,3">
+    
+    <label for="encryptionMethod">Select Encryption Method:</label>
+    <select id="encryptionMethod">
+        <option value="AES">AES - Secure, but longer processing time</option>
+        <option value="XOR">XOR - Less secure, but quicker than AES</option>
+    </select>
+    <button onclick="startEncryption()">Start Encryption</button>
+
+    <h1>Video Decryption</h1>
+    <label for="decryptVideoFile">Select Video File:</label>
+    <input type="file" id="decryptVideoFile" accept="video/*">
+    
+    <label for="decryptKey">Enter Decryption Key (AES ONLY):</label>
+    <input type="text" id="decryptKey" placeholder="Enter key here">
+    
+    <label for="decryptNonce">Enter Decryption Nonce (AES ONLY):</label>
+    <input type="text" id="decryptNonce" placeholder="Enter nonce here">
+    
+    <button onclick="startDecryption()">Start Decryption</button>
+    
+    <h1>Status:</h1>
+    <p id="status"></p>
+</body>
+</html>
