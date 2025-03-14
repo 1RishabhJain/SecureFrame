@@ -8,20 +8,14 @@ import { Navigate, useNavigate } from "react-router-dom"; // Import for navigati
 
 
 const ObjectSelection = () => {
-  const options = []; 
+  //const options = []; 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [videoUrl, setVideoUrl] = useState(null);
 
   const navigate = useNavigate(); // Initialize navigation hook
     // this is a function that is calling a route that does not exist yet because i need the video, not the video path
-  const getDetectedVideo = async () => {
-    try {
-        const response = await axios.get("http://127.0.0.1:5000/get_detected_video", { responseType: "blob" });
-        const videoUrl = URL.createObjectURL(response.data);
-        setVideoUrl(videoUrl);
-    } catch (error) {
-        console.error("Error fetching video:", error);
-    }
+  const getDetectedVideo = () => {
+    setVideoUrl("../../../../temp/");
   };
 
   const getAvailableIds = async () => {
@@ -40,8 +34,13 @@ const ObjectSelection = () => {
   //GET AVAIALBE ID'S API CALL
 
   useEffect(() => {
+    const storedVideoPath = localStorage.getItem("videoPath");
+    if (storedVideoPath) {
+      setVideoUrl(storedVideoPath);
+    }
     getDetectedVideo();
     getAvailableIds();
+    
     //put the available id's api call in here as well
   }, []);
   
@@ -49,7 +48,7 @@ const ObjectSelection = () => {
 
 
 
-  /*const options = [
+  const options = [
     { value: "1", label: "ID 1" },
     { value: "2", label: "ID 2" },
     { value: "3", label: "ID 3" },
@@ -67,7 +66,7 @@ const ObjectSelection = () => {
     { value: "15", label: "ID 15" },
     { value: "16", label: "ID 16" },
   ];
-  */
+  
 
   const handleSubmit = async () => {
 

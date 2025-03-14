@@ -86,6 +86,9 @@ export function Upload() {
             const data = await response.json();
             if (data.success) {
                 console.log("Video uploaded successfully:", data);
+
+                //Store video path in localStorage
+                localStorage.setItem("videoPath", data.output_video_path);
                 navigate("/objectSelection");
             } else {
                 setLoading(false);
