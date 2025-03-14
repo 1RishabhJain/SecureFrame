@@ -6,6 +6,7 @@ from utilities.general_utilities import (
     validate_coordinates,
 )
 from utilities.video_utilities import (
+    convert_to_mp4,
     open_video,
     get_frame_size,
     get_fps,
@@ -77,6 +78,8 @@ def decrypt_video(encrypted_video_path, decrypted_video_path, key_hex = None, no
 
         cap.release()
         out.release()
+        convert_to_mp4(decrypted_video_path, "./frontend/app/public/videos/decrypted_video.mp4")
+
 
         return {
             "success": True,
