@@ -1,3 +1,4 @@
+import subprocess
 import cv2
 
 def open_video(video_path):
@@ -24,3 +25,21 @@ def get_video_writer(output_video_path, fps, frame_width, frame_height, codec="H
     out = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
     return out
     
+def convert_to_mp4(input_path, output_path):
+    try:
+        command = [
+            'ffmpeg',
+            '-i', input_path,
+            '-c:v', 'libx264',
+            '-crf', '23',
+            '-preset', 'medium',
+            '-c:a', 'aac',
+            '-b:a', '192k',
+            '-strict', 'experimental',
+            output_path
+        ]
+        subprocess.run(command, check=True)
+        print(f"Video converted successfully: {output_path}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error converting video: {e}")
+        raise

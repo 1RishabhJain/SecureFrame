@@ -11,7 +11,7 @@ CORS(app,resources={"/*": {"origins": "http://localhost:5173"}})
 
 model_path = 'models/yolov8n.pt'
 tracked_data_path = "output/tracked_objects.json"
-tracked_video_path = 'output/tracked_video.mkv'
+tracked_video_path = 'output/tracked_video.mp4'
 encrypted_video_path = "output/encrypted_video.avi"
 decrypted_video_path = "output/decrypted_video.avi"
 

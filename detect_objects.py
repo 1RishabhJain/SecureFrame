@@ -1,9 +1,14 @@
+import os
 import cv2
 import json
-
+import subprocess
 from utilities.load_model import load_model
-from utilities.video_utilities import open_video, get_frame_size, get_fps, get_frame_count, get_video_writer
+from utilities.video_utilities import convert_to_mp4, open_video, get_frame_size, get_fps, get_frame_count, get_video_writer
 from utilities.general_utilities import log_progress
+
+
+
+
 
 def detect_objects(model_path, input_video_path, output_video_path, output_json_path):
     try:
@@ -72,6 +77,9 @@ def detect_objects(model_path, input_video_path, output_video_path, output_json_
         cap.release()
         out.release()
 
+
+        
+        convert_to_mp4(output_video_path, "./frontend/app/public/videos/tracked_video.mp4")
         # Return structured response
         return {
             "success": True,
@@ -82,4 +90,5 @@ def detect_objects(model_path, input_video_path, output_video_path, output_json_
         }
 
     except Exception as e:
+            print(e);
             return {"success": False, "message": str(e)}

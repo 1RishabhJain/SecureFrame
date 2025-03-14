@@ -34,12 +34,13 @@ const ObjectSelection = () => {
   //GET AVAIALBE ID'S API CALL
 
   useEffect(() => {
-    const storedVideoPath = localStorage.getItem("videoPath");
+    const storedVideoPath = "output-video.mp4"
+    console.log(storedVideoPath)
     if (storedVideoPath) {
       setVideoUrl(storedVideoPath);
     }
     getDetectedVideo();
-    getAvailableIds();
+    //getAvailableIds();
     
     //put the available id's api call in here as well
   }, []);
@@ -107,7 +108,7 @@ const ObjectSelection = () => {
         {/* Video Player */}
         <div className="video-container">
           <ReactPlayer 
-            url={videoUrl}
+            url={"./output-video.mp4"}
             controls 
             width="100%"
             height="550px"
