@@ -224,5 +224,19 @@ def getIdsDecrypt():
             "debug_info": "See server console for full traceback"
         }), 500
 
+ 
+@app.route('/method', methods = ['GET']) 
+def getMethod(): 
+    try:
+        metadata = read_metadata("")
+        method = metadata['method']
+        return jsonify(method)
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e),
+            "debug_info": "See server console for full traceback"
+        }), 500
+
 if __name__ == '__main__':
     app.run(debug=True)
