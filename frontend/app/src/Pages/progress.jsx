@@ -8,12 +8,28 @@ export function Progress() {
     const [isComplete, setIsComplete] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const navigate = useNavigate();
+
+
+    //Api call to get the encrypted frames
+    const getEncryptedFrames = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:5000/encrypt", ) 
+            if (response.data.success) {
+                setIsComplete(true);
+            }
+        }
+        catch (error) {
+            console.error("Error fetching encrypted frames:", error);
+        }
+    }
+
+
     
     // Add animation for the progress bar
     useEffect(() => {
         let currentProgress = 0;
         const interval = setInterval(() => {
-            if (!isPaused && currentProgress < 5) {
+            if (!isPaused && currentProgress < 4) {
                 currentProgress += 1;
                 setProgress(currentProgress);
                 
@@ -36,7 +52,7 @@ export function Progress() {
     
     const handleNext = () => {
         if (isComplete) {
-            navigate('/encryptor'); // Navigate to encryptor page when complete
+            navigate('/videooutput'); // Navigate to encryptor page when complete
         }
     };
     

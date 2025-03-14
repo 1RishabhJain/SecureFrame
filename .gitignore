@@ -28,7 +28,6 @@ dist-ssr
 .models
 temp
 venv
-utilities
 __pycache__
 models
 /venv

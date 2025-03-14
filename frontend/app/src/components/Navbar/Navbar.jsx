@@ -20,10 +20,10 @@ function Navbar() {
       
       <div className="navbar-section button-section">
         <Link to="/progress" className="login-btn">Log in</Link>
-        <button className="signup-btn">
+        <Link to="/videooutput" className="signup-btn">
           <span>Sign up</span>
           <div className="animated-border"></div>
-        </button>
+        </Link>
       </div>
     </div>
   )
