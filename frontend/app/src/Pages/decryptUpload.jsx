@@ -2,11 +2,12 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./upload.css";
 import DragDropFiles from "../components/dragdrop/DragDropFiles";
-
+import axios from "axios";
 export function DecryptUpload() {
+    const [method, setMethod] = useState("")
     const [videos, setVideos] = useState([]);
     const [videoDetails, setVideoDetails] = useState([]);
-    const [keyBox,setKeyBox] = useState(true);
+    const [keyBox,setKeyBox] = useState(false);
     const navigate = useNavigate(); // Hook for navigation
     const [loading, setLoading] = useState(false);
     const [dots, setDots] = useState("");
@@ -26,11 +27,29 @@ export function DecryptUpload() {
     }, [loading]);
 
 
+     async function getMethod() {
+        try {
+            const response = await axios.get("http://localhost:5000/method");
+            setMethod(response.data);
+        } catch (error) {
+            console.error("Error fetching method:", error);
+        }
+    }
+    
+    useEffect(() => {
+        if (method === "AES") {
+            setKeyBox(true);
+        } else if (method === "XOR") {
+            setKeyBox(false);
+        }
+    }, [method]);
+
+
     // Function to handle video metadata extraction
     const handleVideos = (files) => {
         setVideos(files);
         const details = [];
-
+        getMethod();
         files.forEach((file) => {
             const videoURL = URL.createObjectURL(file);
             const video = document.createElement("video");
@@ -43,9 +62,9 @@ export function DecryptUpload() {
                 const minutes = Math.floor(duration / 60);
                 const seconds = Math.floor(duration % 60);
                 const formattedDuration = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-                if (video.method == "AES"){
+                if (method == "AES"){
                     setKeyBox(true)
-                }else if (video.method == "XOR") {
+                }else if (method == "XOR") {
                     setKeyBox(false)
                 }
 
