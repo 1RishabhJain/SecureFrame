@@ -15,7 +15,10 @@ const ObjectSelection = () => {
   const navigate = useNavigate(); // Initialize navigation hook
     // this is a function that is calling a route that does not exist yet because i need the video, not the video path
   const getDetectedVideo = () => {
-    setVideoUrl("../../../../temp/");
+    const storedVideoPath = localStorage.getItem("videoPath");
+    if (storedVideoPath) {
+      setVideoUrl(storedVideoPath);
+    }
   };
 
   const getAvailableIds = async () => {
@@ -34,11 +37,7 @@ const ObjectSelection = () => {
   //GET AVAIALBE ID'S API CALL
 
   useEffect(() => {
-    const storedVideoPath = "output-video.mp4"
-    console.log(storedVideoPath)
-    if (storedVideoPath) {
-      setVideoUrl(storedVideoPath);
-    }
+
     getDetectedVideo();
     //getAvailableIds();
     
@@ -108,10 +107,8 @@ const ObjectSelection = () => {
         {/* Video Player */}
         <div className="video-container">
           <ReactPlayer 
-            url={"./output-video.mp4"}
-            controls 
-            width="100%"
-            height="550px"
+            url={videoUrl}
+            controls
           />
         </div>
 

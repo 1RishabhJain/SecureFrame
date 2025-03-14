@@ -1,13 +1,30 @@
-import { Link } from 'react-router-dom';
-import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./upload.css";
 import DragDropFiles from "../components/dragdrop/DragDropFiles";
-import TextboxDecrypt from '../components/textbox-decrypt/TextboxDecrypt';
 
 export function DecryptUpload() {
     const [videos, setVideos] = useState([]);
     const [videoDetails, setVideoDetails] = useState([]);
-    const [keyBox,setKeyBox] = useState(false);
+    const [keyBox,setKeyBox] = useState(true);
+    const navigate = useNavigate(); // Hook for navigation
+    const [loading, setLoading] = useState(false);
+    const [dots, setDots] = useState("");
+    const [key, setKey] = useState("");  // Separate state for key
+    const [nonce, setNonce] = useState("");  // Separate state for nonce
+
+    useEffect(()=> {
+        let interval;
+        if (loading){
+            interval = setInterval(()=>{
+                setDots((prev) => (prev.length<3 ? prev +".":""));
+            }, 500); // update every 500ms
+        }else{
+            setDots("");
+        }
+        return () => clearInterval(interval);
+    }, [loading]);
+
 
     // Function to handle video metadata extraction
     const handleVideos = (files) => {
@@ -45,12 +62,75 @@ export function DecryptUpload() {
         });
     };
 
+    const handleNext = async () => {
+        console.log("videos array", videos)
+        console.log("video inside", videos[0])
+        if (videos.length === 0) {
+            alert("Please upload a video before proceeding.");
+            return;
+        }
+
+        setLoading(true);
+
+
+        const formData = new FormData();
+
+        formData.append(`video`, videos[0])
+
+        if (keyBox){
+            formData.append(`decryptKey`, key)
+            formData.append(`decryptNonce`, nonce)
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:5000/decrypt", {
+                method: "POST",
+                body: formData,
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                console.log("Video uploaded successfully:", data);
+                navigate("/decrypt");
+            } else {
+                setLoading(false);
+                alert("Upload failed:", data.message);
+                console.error("Upload failed:", data.message);
+            }
+        } catch (error) {
+            setLoading(false);
+            alert("Error uploading video:",error);
+            console.error("Error uploading video:", error);
+        }
+    };
 
     return (
         <>
         <div className="top">
             <h1 className="title">Upload Your Video</h1>
-            {keyBox && <TextboxDecrypt />}
+            {keyBox && 
+            <>
+                <div className="all-wrapper">
+                <div className="text-wrapperD">
+                    <input 
+                        className="text"
+                        onChange={(event) => setKey(event.target.value)}
+                        value={key}
+                        placeholder="Enter Decryption Key(s)"
+                    />
+                </div>
+                <div className="text-wrapperD">   
+                    <input 
+                        className="text"
+                        onChange={(event) => setNonce(event.target.value)}
+                        value={nonce}
+                        placeholder="Enter Decryption Nonce(s)"
+                    />
+                </div>
+                <button className="btn" onClick={handleNext}>NEXT</button>
+                </div>
+            </>
+            }
         </div>
         <div className="dragdrop-page">
             <DragDropFiles setFiles={handleVideos} accepts="video/mp4,video/avi,video/mkv" />
@@ -66,9 +146,13 @@ export function DecryptUpload() {
                             </li>
                         ))}
                     </ul>
-                    <div>
-                    {!keyBox && <Link className="next-button" to="/decrypt">NEXT</Link>}
-                    </div>
+                {!keyBox &&
+                    (loading ? (
+                        <p className="loading-text">Detecting Objects{dots}</p>
+                    ) : (
+                        <button className="next-button" onClick={handleNext}>NEXT</button>
+                    ))
+                }
                 </div>
             )}
         </div>

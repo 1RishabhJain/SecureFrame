@@ -29,6 +29,7 @@ def convert_to_mp4(input_path, output_path):
     try:
         command = [
             'ffmpeg',
+            '-y',
             '-i', input_path,
             '-c:v', 'libx264',
             '-crf', '23',

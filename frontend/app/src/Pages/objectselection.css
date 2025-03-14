@@ -14,8 +14,8 @@
   
   .video-container {
     flex: 3;
-    max-width: 6200px;
-    max-height: 2000px; /* Proper width */
+    max-width: 0.5vw;
+    max-height: 0.5vw; /* Proper width */
     border: solid purple 5px; /* Fix border */
   }
   
@@ -55,4 +55,9 @@
 .next-button:hover {
     background-color: rgba(162, 161, 161, 0.419);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+video {
+  max-width: 50vw;
+  max-height: 50vw;
 }

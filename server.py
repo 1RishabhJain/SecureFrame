@@ -179,7 +179,7 @@ def decrypt():
         video_file.save(encrypted_video_path)
 
         # Call decrypt_video using the saved file
-        print(f"DEBUG: Calling decrypt_video with {encrypted_video_path}, key, and nonce")
+        print(f"DEBUG: Calling decrypt_video with {encrypted_video_path}, key {key_hex}, and nonce {nonce_hex}")
         result_decrypt = decrypt_video(encrypted_video_path, decrypted_video_path, key_hex, nonce_hex)
         print(f"DEBUG: decrypt_video result: {result_decrypt}")
 

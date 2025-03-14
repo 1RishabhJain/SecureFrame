@@ -88,7 +88,9 @@ export function Upload() {
                 console.log("Video uploaded successfully:", data);
 
                 //Store video path in localStorage
-                localStorage.setItem("videoPath", data.output_video_path);
+                // localStorage.setItem("videoPath", data.output_video_path);
+                localStorage.setItem("videoPath", "/videos/tracked_video.mp4");
+
                 navigate("/objectSelection");
             } else {
                 setLoading(false);
