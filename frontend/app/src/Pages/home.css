@@ -1,0 +1,146 @@
+.hero-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10vh;
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.sub-text {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.cta-button {
+  background: rgba(104, 73, 213, 0.5);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 3rem;
+  width: 80%;
+  max-width: 500px;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+}
+
+.cta-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
+  z-index: -1;
+}
+
+.cta-button:hover:before {
+  left: 100%;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.navbar, .nav-links, .auth-buttons, .login-btn, .signup-btn {
+  /* Change from display: none to display: flex or remove this entirely */
+  /* display: none; */
+}
+
+.image-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: -50px;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reset some default browser styles that might cause sliding */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add these styles for the logo */
+.logo-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 400px;
+  margin-bottom: 2rem;
+  margin-left: 200px;
+  margin-top: -70px;
+  padding-right: 10%;
+}
+
+.main-logo {
+  max-width: 400%;
+  width: 2000px;
+  margin-left: 500px;
+  margin-right: -350px;
+  margin-top: -70px;
+  height: auto;
+ 
+}
+
+/* Update existing styles */
+.subtitle {
+  width: 100%;
+  text-align: center;
+  margin-top: -70px;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.visualization-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 200px;
+  margin: 0 auto;
+} 

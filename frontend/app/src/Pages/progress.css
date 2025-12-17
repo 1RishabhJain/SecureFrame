@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 2rem;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 10vh;
+}
+
+.progress-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; /* Bold */
+}
+
+.progress-status {
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.progress-bar-container {
+    width: 70%;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: rgba(138, 43, 226, 0.7);
+    border-radius: 15px;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-indicator {
+    width: 30px;
+    height: 30px;
+    background-color: #8a2be2;
+    border-radius: 50%;
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 15px 5px rgba(138, 43, 226, 0.7);
+}
+
+.encryption-status {
+    font-size: 2.3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Semibold */
+    opacity: 0.48;
+}
+
+.encryption-status.complete {
+    opacity: 0.48; /* 48% opacity for the complete status */
+}
+
+.purple-glow {
+    position: absolute;
+    width: 80%;
+    height: 200px;
+    background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.4) 0%, rgba(138, 43, 226, 0) 70%);
+    bottom: 20%;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+/* Make buttons much larger with bigger font */
+.action-buttons {
+    display: flex;
+    gap: 5rem; /* Increased spacing between buttons */
+    margin-top: 2.7rem;
+}
+
+.back-btn, .next-btn {
+    padding: 1.2rem 4rem; /* Significantly larger padding */
+    border-radius: 40px; /* Increased border radius for larger buttons */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    font-size: 1.1rem; /* Much larger font size */
+    font-weight: 500; /* Medium weight for better visibility */
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    min-width: 180px; /* Wider minimum width */
+    text-transform: uppercase; /* Optional: makes text uppercase for more prominence */
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.next-btn {
+    opacity: 0.3; /* Lower opacity until complete */
+}
+
+.next-btn.active {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.next-btn.active:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

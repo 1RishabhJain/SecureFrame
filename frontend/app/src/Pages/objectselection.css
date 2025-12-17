@@ -1,0 +1,68 @@
+.object-selection-header{
+    text-align: center;
+}
+
+h1 {
+  padding-top: 1.5vw;
+  margin-bottom: 1.5vw;
+}
+
+.object-selection-container {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .video-container {
+    flex: 3;
+    width: 600px;
+    height: 500px; /* Proper width */
+    border: solid purple 5px; /* Fix border */
+  }
+  
+  .selector-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap:5px;
+    flex: 1;
+    max-width: 400px; /* Limits dropdown width */
+    display: flex;
+    align-items: center;
+  }
+  
+
+  
+  .next-button {
+    position: relative;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 9999px;
+    padding: none;
+    width: 6.5vw;
+    height: 2.5vw;
+    font-size: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    display: flex;         /* Enables flexbox */
+    justify-content: center; /* Centers text horizontally */
+    align-items: center;   /* Centers text vertically */
+    text-align: center;    /* Ensures text alignment */
+}
+
+/* Hover Effect */
+.next-button:hover {
+    background-color: rgba(162, 161, 161, 0.419);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+video {
+  /* max-width: 50vw;
+  max-height: 50vw; */
+  position: relative;
+  transform: scaleX(1);
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Webcam Streams</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <h1>Webcam Streams</h1>
+  
+  <div class="stream">
+    <h3>Original Video</h3>
+    <img src="{{ url_for('video_feed_original') }}" alt="Original Video">
+  </div>
+  <div class="stream">
+    <h3>Annotated Video</h3>
+    <img src="{{ url_for('video_feed_annotated') }}" alt="Annotated Video">
+  </div>
+  <div class="stream">
+    <h3>Encrypted Video</h3>
+    <img src="{{ url_for('video_feed_encrypted') }}" alt="Encrypted Video">
+  </div>
+  
+  <!-- Toggle flip button -->
+  <form action="{{ url_for('toggle_flip') }}" method="post">
+    <button type="submit">Toggle Flip</button>
+  </form>
+  <p>Flip is currently: {{ 'On' if flip else 'Off' }}</p>
+  
+  <!-- Checklist for selecting objects to encrypt (generated dynamically via JS) -->
+  <form id="objectForm" action="{{ url_for('update_objects') }}" method="post">
+    <h3>Select Objects to Encrypt:</h3>
+    <div id="checklist-container"></div>
+    <button type="submit">Update Encryption Objects</button>
+  </form>
+  
+  <p>Currently encrypting: {{ selected_objects|join(', ') if selected_objects else "None" }}</p>
+  
+  <!-- Pass the selected objects from the server to JS -->
+  <script>
+    const selectedObjects = {{ selected_objects|tojson|safe }};
+    
+    const availableObjects = ["person", "cell phone", "phone", "paper"];
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("Current selected objects:", selectedObjects);
+      const container = document.getElementById("checklist-container");
+      availableObjects.forEach(obj => {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = "objects";
+        checkbox.value = obj;
+        
+        if (selectedObjects.includes(obj)) {
+          checkbox.checked = true;
+        }
+        
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(" " + obj.charAt(0).toUpperCase() + obj.slice(1)));
+        container.appendChild(label);
+        container.appendChild(document.createElement("br"));
+      });
+    });
+  </script>
+</body>
+</html>

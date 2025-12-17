@@ -1,0 +1,60 @@
+.all-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+
+
+.text-wrapperD {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid rgba(200, 200, 200, 0.5); /* Outline box */
+    border-radius: 50px; /* Rounded outline */
+    background-color: rgba(161, 152, 152, 0.3); /* Semi-transparent grey */
+    width: 20vw; /* Shrinks to fit content */
+    height: 3vw;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow */
+}
+
+.text {
+    width: 30vw;  /* Adjust width */
+    height: 3vw;  /* Make it a perfect circle */
+    background: transparent;
+    border-radius: 50px;  /* Fully rounded */
+    color: white; /* Text color */
+    font-size: 16px;
+    text-align: left; /* Center text inside */
+    outline: none;
+    border: none;
+}
+
+
+/* Placeholder styling */
+.text::placeholder {
+    color: rgba(255, 255, 255, 0.364);
+    font-style: italic;
+}
+
+/* Button Styling */
+
+.btn {
+    position: relative;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 9999px;
+    padding: none;
+    width: 6.5vw;
+    height: 2.5vw;
+    font-size: 1rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    display: flex;         /* Enables flexbox */
+    justify-content: center; /* Centers text horizontally */
+    align-items: center;   /* Centers text vertically */
+    text-align: center;    /* Ensures text alignment */
+}
+
